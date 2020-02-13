@@ -309,7 +309,7 @@ router.delete('/likes/:id', (req, res, next) => {
         if (err) {
             res.json(err);
         } else {
-            res.json(req.body._id);
+            res.json(req.params.id);
         }
     });
 });
