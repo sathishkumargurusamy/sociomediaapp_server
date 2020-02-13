@@ -309,7 +309,7 @@ router.delete('/likes/:uid&:pid', (req, res, next) => {
         if (err) {
             res.json(err);
         } else {
-            res.json(req.params.id);
+            res.json(result);
         }
     });
 });
