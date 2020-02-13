@@ -303,9 +303,9 @@ router.post('/likes', (req, res, next) => {
         }
     });
 });
-router.delete('/likes/:body', (req, res, next) => {
+router.delete('/likes/:uid&:pid', (req, res, next) => {
     pusher.trigger('likes', 'likes-removed', 'Likes deleted');
-    likes.remove({ userid: req.params.body.userid, postid: req.prams.body._id }, function(err, result) {
+    likes.remove({ userid: req.params.uid, postid: req.params.pid }, function(err, result) {
         if (err) {
             res.json(err);
         } else {
