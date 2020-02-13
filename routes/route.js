@@ -130,6 +130,8 @@ router.put('/updateuser/:id', (req, res, next) => {
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
         user.profileimage = req.body.profileimage;
+        user.dateofbirth = req.body.dateofbirth;
+        user.gender = req.body.gender;
         // save the bear
         user.save(function(err) {
             if (err)
