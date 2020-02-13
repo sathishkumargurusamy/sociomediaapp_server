@@ -32,6 +32,12 @@ const Userschema = mongoose.Schema({
     },
     profileimage: {
         type: String
+    },
+    dob: {
+        type: String
+    },
+    gender: {
+        type: String
     }
 
 });
