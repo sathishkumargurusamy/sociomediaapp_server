@@ -348,6 +348,24 @@ router.post('/message', (req, res, next) => {
         }
     });
 });
+router.put('/message/:msgid', (req, res, next) => {
+    message.findById(req.params.msgid, function(err, message) {
+
+        if (err)
+            res.send(err);
+
+        message.read = req.body.read; // update the bears info
+
+        // save the bear
+        message.save(function(err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Message updated!' });
+        });
+
+    });
+});
 
 
 
