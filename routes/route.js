@@ -163,9 +163,8 @@ router.put('/post/:postid', (req, res, next) => {
         if (err)
             res.send(err);
 
-        post.likes = req.body.likes; // update the bears info
+        post.likes = req.body.likes;
 
-        // save the bear
         post.save(function(err) {
             if (err)
                 res.send(err);
@@ -355,9 +354,7 @@ router.put('/message/:msgid', (req, res, next) => {
         if (err)
             res.send(err);
 
-        message.read = req.body.read; // update the bears info
-
-        // save the bear
+        message.read = true;
         message.save(function(err) {
             if (err)
                 res.send(err);
@@ -367,7 +364,5 @@ router.put('/message/:msgid', (req, res, next) => {
 
     });
 });
-
-
 
 module.exports = router;
