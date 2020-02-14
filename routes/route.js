@@ -337,7 +337,7 @@ router.post('/message', (req, res, next) => {
         friendname: req.body.friendname,
         friendid: req.body.friendid,
         message: req.body.message,
-        read: req.body.e.read
+        read: req.body.read
     });
     pusher.trigger('message', 'message-sent', newmessage);
     newmessage.save((err, message) => {
