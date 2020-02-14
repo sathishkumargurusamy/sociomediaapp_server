@@ -348,20 +348,17 @@ router.post('/message', (req, res, next) => {
         }
     });
 });
-router.put('/message/:msgid', (req, res, next) => {
-    message.findById(req.params.msgid, function(err, message) {
+router.get('/message/:msgid', (req, res, next) => {
+    chat_message.find(req.params.msgid).sort({ time: 1 }).exec(function(err, message) {
+        if (err) {
+            res.json('Error finding message!!');
 
-        if (err)
-            res.send(err);
-
-        message.read = true;
-        message.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Message updated!' });
-        });
-
+        } else {
+            if (message) {
+                // pusher.trigger('message', 'message-received', message);
+                res.json(message);
+            }
+        }
     });
 });
 
