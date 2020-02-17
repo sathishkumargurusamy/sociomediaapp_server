@@ -44,7 +44,9 @@ router.post('/user', (req, res, next) => {
             const token = jwt.sign({
                 user: users
             }, 'supersecret', { expiresIn: '2h' });
-            res.json({ token: token });
+            if (token) {
+                res.json({ token: token });
+            }
         }
     });
 });
