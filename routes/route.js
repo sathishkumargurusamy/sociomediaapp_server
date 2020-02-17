@@ -41,10 +41,10 @@ router.post('/user', (req, res, next) => {
         if (users.length == 0) {
             res.json(false);
         } else {
-            // const token = jwt.sign({
-            //     user: users
-            // }, 'supersecret', { expiresIn: '2h' });
-            res.json(users);
+            const token = jwt.sign({
+                user: users
+            }, 'supersecret', { expiresIn: '2h' });
+            res.json({ token: token });
         }
     });
 });
