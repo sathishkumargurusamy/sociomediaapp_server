@@ -45,7 +45,7 @@ router.post('/user', (req, res, next) => {
                 user: users
             }, 'supersecret', { expiresIn: '2h' });
             if (token) {
-                res.json({ token: token });
+                res.send({ token: token });
             }
         }
     });
