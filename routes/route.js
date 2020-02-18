@@ -366,23 +366,37 @@ router.put('/message/:msgid', (req, res, next) => {
         });
 
     });
+});
 
-    //STORY ROUTES
-    router.post('/story', (req, res, next) => {
-        let newStory = new story({
-            username: 'safdc',
-            userid: '12324',
-            story: 'asddsv',
-        });
-        newStory.save((err, story) => {
-            if (err) {
-                res.json({ msg: 'Failed to add story' });
+//STORY ROUTES
+router.post('/story', (req, res, next) => {
+    let newStory = new story({
+        username: req.body.username,
+        userid: req.body.userid,
+        story: req.body.story,
+    });
+    newStory.save((err, story) => {
+        if (err) {
+            res.json({ msg: 'Failed to add story' });
 
-            } else {
-                res.json({ msg: 'Story posted successfully' });
-            }
-        });
+        } else {
+            res.json({ msg: 'Story posted successfully' });
+        }
     });
 });
+router.get('/story', (req, res, next) => {
+    story.find().sort({ time: 1 }).exec(function(err, story) {
+        if (err) {
+            res.json('Error finding message!!');
+
+        } else {
+            if (story) {
+                // pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
+                res.json(story);
+            }
+        }
+    });
+});
+
 
 module.exports = router;
