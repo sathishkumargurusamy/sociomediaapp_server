@@ -370,9 +370,9 @@ router.put('/message/:msgid', (req, res, next) => {
     //STORY ROUTES
     router.post('/story', (req, res, next) => {
         let newStory = new story({
-            username: req.body.username,
-            userid: req.body.userid,
-            story: req.body.story,
+            username: 'safdc',
+            userid: '12324',
+            story: 'asddsv',
         });
         newStory.save((err, story) => {
             if (err) {
