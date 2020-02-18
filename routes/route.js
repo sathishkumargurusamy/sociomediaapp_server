@@ -323,7 +323,7 @@ router.get('/message', (req, res, next) => {
 
         } else {
             if (message) {
-                pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
+                // pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
                 res.json(message);
             }
         }
