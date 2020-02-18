@@ -323,7 +323,7 @@ router.get('/message', (req, res, next) => {
 
         } else {
             if (message) {
-                // pusher.trigger('message', 'message-received', message);
+                pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
                 res.json(message);
             }
         }
@@ -361,7 +361,7 @@ router.put('/message/:msgid', (req, res, next) => {
                 res.send(err);
 
             res.json({ message: 'Message updated!' });
-            pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
+
         });
 
     });
