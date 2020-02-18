@@ -7,6 +7,7 @@ const comments = require('../models/comment');
 const likes = require('../models/likes');
 const chat_message = require('../models/message');
 const group = require('../models/groups');
+const story = require('../models/story');
 const bcrypt = require('bcrypt-nodejs');
 const jwtLogin = require('jwt-login');
 var Pusher = require('pusher');
@@ -365,6 +366,26 @@ router.put('/message/:msgid', (req, res, next) => {
         });
 
     });
+
+    //STORY ROUTES
+    router.post('/story', (req, res, next) => {
+        let newStory = new story({
+            username: req.body.username,
+            userid: req.body.userid,
+            story: req.body.story,
+        });
+        newStory.save((err, story) => {
+            if (err) {
+                res.json({ msg: 'Failed to add story' });
+
+            } else {
+                res.json({ msg: 'Story posted successfully' });
+            }
+        });
+    });
+
+
+
 });
 
 module.exports = router;
