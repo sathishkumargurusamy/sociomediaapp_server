@@ -349,7 +349,7 @@ router.post('/message', (req, res, next) => {
     });
 });
 router.put('/message/:msgid', (req, res, next) => {
-    pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
+
     chat_message.findById(req.params.msgid, function(err, message) {
 
         if (err)
@@ -361,6 +361,7 @@ router.put('/message/:msgid', (req, res, next) => {
                 res.send(err);
 
             res.json({ message: 'Message updated!' });
+            pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
         });
 
     });
