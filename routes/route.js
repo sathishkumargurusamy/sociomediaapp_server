@@ -383,9 +383,6 @@ router.put('/message/:msgid', (req, res, next) => {
             }
         });
     });
-
-
-
 });
 
 module.exports = router;
