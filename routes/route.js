@@ -387,7 +387,20 @@ router.post('/story', (req, res, next) => {
 router.get('/story', (req, res, next) => {
     story.find().sort({ time: 1 }).exec(function(err, story) {
         if (err) {
-            res.json('Error finding message!!');
+            res.json('Error finding story!!');
+
+        } else {
+            if (story) {
+                // pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
+                res.json(story);
+            }
+        }
+    });
+});
+router.get('/story/:id', (req, res, next) => {
+    story.findById({ _id: req.params.id }).exec(function(err, story) {
+        if (err) {
+            res.json('Error finding story!!');
 
         } else {
             if (story) {
