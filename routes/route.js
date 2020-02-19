@@ -375,6 +375,7 @@ router.post('/story', (req, res, next) => {
         userid: req.body.userid,
         story: req.body.story,
     });
+    pusher.trigger('story', 'likes-added', 'Story added');
     newStory.save((err, story) => {
         if (err) {
             res.json({ msg: 'Failed to add story' });
