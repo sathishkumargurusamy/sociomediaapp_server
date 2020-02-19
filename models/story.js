@@ -17,7 +17,7 @@ const Storyschema = mongoose.Schema({
     expireAt: {
         type: Date,
         default: Date.now,
-        index: { expires: '60m' },
+        index: { expires: '50m' },
     }
 });
 
