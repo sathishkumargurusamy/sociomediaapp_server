@@ -145,6 +145,7 @@ router.put('/updateuser/:id', (req, res, next) => {
 });
 router.put('/user/:id', (req, res, next) => {
     user.findById(req.params.id, function(err, user) {
+        pusher.trigger('user', 'user-logged', 'Story loggedIn');
 
         if (err)
             res.send(err);
