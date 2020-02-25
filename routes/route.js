@@ -415,14 +415,14 @@ router.get('/story/:id', (req, res, next) => {
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'sathishppit@gmail.com',
+        user: 'gsathishkumar2597@gmail.com',
         pass: 'satzai67jt'
     }
 });
 
 var mailOptions = {
-    from: 'sathishppit@gmail.com',
-    to: 'gsathishkumar2597@gmail.com',
+    from: 'gsathishkumar2597@gmail.com',
+    to: 'sathishppit@gmail.com',
     subject: 'Sending Email using Node.js',
     text: 'That was easy!'
 };
