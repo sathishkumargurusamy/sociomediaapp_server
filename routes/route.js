@@ -10,26 +10,6 @@ const group = require('../models/groups');
 const story = require('../models/story');
 const bcrypt = require('bcrypt-nodejs');
 const jwtLogin = require('jwt-login');
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'gsathishkumar2597@gmail.com',
-        pass: 'sampathai67jt'
-    }
-});
-const mailOptions = {
-    from: 'gsathishkumar2597@gmail.com', // sender address
-    to: 'sathishppit@gmail.com', // list of receivers
-    subject: 'Hello from satz', // Subject line
-    html: '<p>Hello...</p>' // plain text body
-};
-transporter.sendMail(mailOptions, function(err, info) {
-    if (err)
-        console.log(err)
-    else
-        console.log(info);
-});
 var Pusher = require('pusher');
 var pusher = new Pusher({
     appId: '943935',
