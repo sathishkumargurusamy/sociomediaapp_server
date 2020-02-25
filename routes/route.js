@@ -9,6 +9,7 @@ const chat_message = require('../models/message');
 const group = require('../models/groups');
 const story = require('../models/story');
 const bcrypt = require('bcrypt-nodejs');
+const nodemailer = require('nodemailer');
 const jwtLogin = require('jwt-login');
 var Pusher = require('pusher');
 var pusher = new Pusher({
@@ -26,7 +27,6 @@ router.post('/newuser', (req, res, next) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         status: 0,
-        token: 'abcde',
         profileimage: ''
     });
     newuser.save((err, newuser) => {
@@ -412,6 +412,27 @@ router.get('/story/:id', (req, res, next) => {
         }
     });
 });
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'sathishppit@gmail.com',
+        pass: 'satzai67jt'
+    }
+});
 
+var mailOptions = {
+    from: 'sathishppit@gmail.com',
+    to: 'gsathishkumar2597@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+});
 
 module.exports = router;
