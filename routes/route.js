@@ -21,16 +21,15 @@ var pusher = new Pusher({
 });
 
 var server = email.server.connect({
-    user: "sathishppit@gmail.com",
-    password: "satzai67jt",
-    host: "smtp.gmail.com",
+    user: "pibeyi4479@maillei.com",
+    host: "smtp.maillei.com",
     ssl: true,
     port: 465
 });
 server.send({
     text: "Your message body text",
-    from: "sathishppit@gmail.com",
-    to: "gsathishkumar2597@gmail.com",
+    from: "pibeyi4479@maillei.com",
+    to: "sathishppit@gmail.com",
     subject: "Your message subject"
 }, function(err, message) {
     if (err)
