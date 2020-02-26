@@ -33,8 +33,8 @@ router.post('/sendconfirmmail', (req, res, next) => {
     server.send({
         text: "Confirmation code for SociomediaApp",
         from: "sathishppit@gmail.com",
-        to: req.body.email,
-        subject: req.body.confirm_code
+        to: 'gsathishkumar2597@gmail.com',
+        subject: '12345'
     }, function(err, message) {
         if (err)
             console.log(err);
