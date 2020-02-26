@@ -21,26 +21,24 @@ var pusher = new Pusher({
 });
 
 //Confirmation mail
-router.post('/sendconfirmmail', (req, res, next) => {
-    pusher.trigger('confirmation', 'confirm-code', req.body.confirm_code);
-    var server = email.server.connect({
-        user: "sathishppit@gmail.com",
-        password: "satzai67jt",
-        host: "smtp.gmail.com",
-        ssl: true,
-        port: 465
-    });
-    server.send({
-        text: "Confirmation code for SociomediaApp",
-        from: "sathishppit@gmail.com",
-        to: 'gsathishkumar2597@gmail.com',
-        subject: '12345'
-    }, function(err, message) {
-        if (err)
-            console.log(err);
-        else
-            res.json({ success: true, msg: 'sent' });
-    });
+pusher.trigger('confirmation', 'confirm-code', req.body.confirm_code);
+var server = email.server.connect({
+    user: "sathishppit@gmail.com",
+    password: "satzai67jt",
+    host: "smtp.gmail.com",
+    ssl: true,
+    port: 465
+});
+server.send({
+    text: "Confirmation code for SociomediaApp",
+    from: "sathishppit@gmail.com",
+    to: 'gsathishkumar2597@gmail.com',
+    subject: '12345'
+}, function(err, message) {
+    if (err)
+        console.log(err);
+    else
+        res.json({ success: true, msg: 'sent' });
 });
 //USER ROUTES
 router.post('/checkuser', (req, res, next) => {
