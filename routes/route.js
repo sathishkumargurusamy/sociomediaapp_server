@@ -43,9 +43,18 @@ router.post('/sendconfirmmail', (req, res, next) => {
     });
 });
 //USER ROUTES
-router.post('/checkuser', (req, res, next) => {
+router.post('/checkusername', (req, res, next) => {
     user.find({ username: req.body.username }, function(err, users) {
-        if (users.length == 0 && users.email != req.body.email) {
+        if (users.length == 0) {
+            res.json(1);
+        } else {
+            res.json(0);
+        }
+    });
+});
+router.post('/checkemail', (req, res, next) => {
+    user.find({ email: req.body.email }, function(err, users) {
+        if (users.length == 0) {
             res.json(1);
         } else {
             res.json(0);
