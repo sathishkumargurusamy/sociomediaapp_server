@@ -21,7 +21,6 @@ var pusher = new Pusher({
 });
 
 //Confirmation mail
-pusher.trigger('confirmation', 'confirm-code', req.body.confirm_code);
 var server = email.server.connect({
     user: "sathishppit@gmail.com",
     password: "satzai67jt",
