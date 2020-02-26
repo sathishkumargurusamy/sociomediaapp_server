@@ -43,12 +43,29 @@ router.post('/sendconfirmmail', (req, res, next) => {
     });
 });
 //USER ROUTES
+router.post('/checkuser', (req, res, next) => {
+    user.find({ username: req.body.username }, function(err, users) {
+        if (users.length == 0 && users.email != req.body.email) {
+            res.json(1);
+        } else {
+            res.json(0);
+        }
+    });
+    newuser.save((err, newuser) => {
+        if (err) {
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    });
+});
 router.post('/newuser', (req, res, next) => {
     let newuser = new user({
         username: req.body.username,
         password: req.body.password,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
+        email: req.body.mail,
         status: 0,
         token: 'abcde',
         profileimage: ''
