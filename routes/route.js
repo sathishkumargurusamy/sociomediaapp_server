@@ -51,13 +51,6 @@ router.post('/checkuser', (req, res, next) => {
             res.json(0);
         }
     });
-    newuser.save((err, newuser) => {
-        if (err) {
-            res.json(0);
-        } else {
-            res.json(1);
-        }
-    });
 });
 router.post('/newuser', (req, res, next) => {
     let newuser = new user({
