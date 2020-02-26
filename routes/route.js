@@ -25,7 +25,7 @@ router.post('/sendconfirmmail', (req, res, next) => {
     pusher.trigger('confirmation', 'confirm-code', req.body.confirm_code);
     var server = email.server.connect({
         user: "sathishshow.yahoo.co.in",
-        password: "satzai67jt",
+        password: "sdupiioikeqfawrd",
         host: "smtp.mail.yahoo.com	",
         ssl: true,
         port: 465
