@@ -26,7 +26,7 @@ router.post('/sendconfirmmail', (req, res, next) => {
     var server = email.server.connect({
         user: "sathishshow@yahoo.co.in",
         password: "lnswktytngptbcre",
-        host: "smtp.yahoo.com	",
+        host: "smtp.mail.yahoo.com",
         ssl: true,
         port: 465
     });
