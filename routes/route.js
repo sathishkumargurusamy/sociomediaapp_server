@@ -10,6 +10,7 @@ const group = require('../models/groups');
 const story = require('../models/story');
 const bcrypt = require('bcrypt-nodejs');
 const jwtLogin = require('jwt-login');
+var email = require('emailjs/email');
 var Pusher = require('pusher');
 var pusher = new Pusher({
     appId: '943935',
@@ -17,6 +18,25 @@ var pusher = new Pusher({
     secret: '7791971c50b634ad29ba',
     cluster: 'ap2',
     encrypted: true
+});
+
+var server = email.server.connect({
+    user: "gsathishkumar2597@gmail.com",
+    password: "sampathai67jt",
+    host: "smtp.gmail.com",
+    ssl: true,
+    port: 465
+});
+server.send({
+    text: "Your message body text",
+    from: "gsathishkumar2597@gmail.com",
+    to: "sathishppit@gmail.com",
+    subject: "Your message subject"
+}, function(err, message) {
+    if (err)
+        console.log(err);
+    else
+        res.json({ success: true, msg: 'sent' });
 });
 //USER ROUTES
 router.post('/newuser', (req, res, next) => {
@@ -412,6 +432,5 @@ router.get('/story/:id', (req, res, next) => {
         }
     });
 });
-
 
 module.exports = router;
