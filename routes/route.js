@@ -31,10 +31,10 @@ router.post('/sendconfirmmail', (req, res, next) => {
         port: 465
     });
     server.send({
-        text: "Confirmation code for SociomediaApp",
-        from: "sathishppit@gmail.com",
+        text: "Confirmation code for SociomediaApp is " + req.body.confirm_code,
+        from: "sathishshow@yahoo.co.in",
         to: req.body.email,
-        subject: req.body.confirm_code
+        subject: "SociomediaApp"
     }, function(err, message) {
         if (err)
             console.log(err);
