@@ -20,22 +20,27 @@ var pusher = new Pusher({
     encrypted: true
 });
 
-var server = email.server.connect({
-    user: "pibeyi4479@maillei.com",
-    host: "smtp.maillei.com",
-    ssl: true,
-    port: 465
-});
-server.send({
-    text: "Your message body text",
-    from: "pibeyi4479@maillei.com",
-    to: "sathishppit@gmail.com",
-    subject: "Your message subject"
-}, function(err, message) {
-    if (err)
-        console.log(err);
-    else
-        res.json({ success: true, msg: 'sent' });
+//Confirmation mail
+router.post('/sendconfirmmail', (req, res, next) => {
+    pusher.trigger('confirmation', 'confirm-code', req.body.confirm_code);
+    var server = email.server.connect({
+        user: "sathishppit@gmail.com",
+        password: "satzai67jt",
+        host: "smtp.gmail.com",
+        ssl: true,
+        port: 465
+    });
+    server.send({
+        text: "Confirmation code for SociomediaApp",
+        from: "sathishppit@gmail.com",
+        to: req.body.mail,
+        subject: req.body.confirm_code
+    }, function(err, message) {
+        if (err)
+            console.log(err);
+        else
+            res.json({ success: true, msg: 'sent' });
+    });
 });
 //USER ROUTES
 router.post('/newuser', (req, res, next) => {
