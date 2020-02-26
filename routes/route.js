@@ -21,16 +21,16 @@ var pusher = new Pusher({
 });
 
 var server = email.server.connect({
-    user: "gsathishkumar2597@gmail.com",
-    password: "sampathai67jt",
+    user: "sathishppit@gmail.com",
+    password: "satzai67jt",
     host: "smtp.gmail.com",
     ssl: true,
     port: 465
 });
 server.send({
     text: "Your message body text",
-    from: "gsathishkumar2597@gmail.com",
-    to: "sathishppit@gmail.com",
+    from: "sathishppit@gmail.com",
+    to: "gsathishkumar2597@gmail.com",
     subject: "Your message subject"
 }, function(err, message) {
     if (err)
@@ -153,7 +153,6 @@ router.put('/updateuser/:id', (req, res, next) => {
         user.profileimage = req.body.profileimage;
         user.dob = req.body.dateofbirth;
         user.gender = req.body.gender;
-        // save the bear
         user.save(function(err) {
             if (err)
                 res.send(err);
@@ -170,7 +169,6 @@ router.put('/user/:id', (req, res, next) => {
         if (err)
             res.send(err);
         user.status = req.body.status;
-        // save the bear
         user.save(function(err) {
             if (err)
                 res.send(err);
