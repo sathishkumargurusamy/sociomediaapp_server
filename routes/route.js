@@ -483,5 +483,22 @@ router.get('/secure/:senderid&&:friendid', (req, res, next) => {
         }
     });
 });
+router.post('/secure', (req, res, next) => {
+    let newBiometricData = new biometricData({
+        sendername: req.body.sendername,
+        senderid: req.body.senderid,
+        friendid: req.body.friendid,
+        friendname: req.body.friendname,
+        toggle: req.body.toggle,
+    });
+    newBiometricData.save((err, data) => {
+        if (err) {
+            res.json({ msg: 'Failed to add data' });
+
+        } else {
+            res.json({ msg: 'data added successfully' });
+        }
+    });
+});
 
 module.exports = router;
