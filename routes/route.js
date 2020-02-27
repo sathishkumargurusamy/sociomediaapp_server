@@ -6,6 +6,7 @@ const post = require('../models/post');
 const comments = require('../models/comment');
 const likes = require('../models/likes');
 const chat_message = require('../models/message');
+const biometricData = require('../models/biometric_data');
 const group = require('../models/groups');
 const story = require('../models/story');
 const bcrypt = require('bcrypt-nodejs');
@@ -450,6 +451,35 @@ router.get('/story/:id', (req, res, next) => {
                 // pusher.trigger('message', 'unreadmessages-count', 'Unread Messages');
                 res.json(story);
             }
+        }
+    });
+});
+//BIOMETRIC DATA ROUTING
+router.put('/secure', (req, res, next) => {
+
+    biometricData.find({ senderid: req.body.senderid, friendid: req.body.friendid }, function(err, secure_data) {
+
+        if (err)
+            res.send(err);
+
+        secure_data.read = req.body.toggle;
+        secure_data.save(function(err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Data updated!' });
+
+        });
+
+    });
+});
+router.get('/secure/:senderid&&:friendid', (req, res, next) => {
+    biometricData.find({ senderid: req.params.senderid, friendid: req.params.friendid }, function(err, secure_data) {
+        if (err) {
+            res.json('Error finding data!!');
+
+        } else {
+            res.json(secure_data);
         }
     });
 });
