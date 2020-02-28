@@ -2,19 +2,11 @@ const mongoose = require('mongoose');
 
 
 const BiometricSchema = mongoose.Schema({
-    senderid: {
+    userid: {
         type: String,
         required: true
     },
-    sendername: {
-        type: String,
-        required: true
-    },
-    friendid: {
-        type: String,
-        required: true
-    },
-    friendname: {
+    username: {
         type: String,
         required: true
     },

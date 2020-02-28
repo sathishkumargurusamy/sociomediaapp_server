@@ -457,12 +457,12 @@ router.get('/story/:id', (req, res, next) => {
 //BIOMETRIC DATA ROUTING
 router.put('/secure', (req, res, next) => {
 
-    biometricData.find({ senderid: req.body.senderid, friendid: req.body.friendid }, function(err, secure_data) {
+    biometricData.find({ userid: req.body.userid }, function(err, secure_data) {
 
         if (err)
             res.send(err);
 
-        secure_data.read = req.body.toggle;
+        secure_data.secure = req.body.toggle;
         secure_data.save(function(err) {
             if (err)
                 res.send(err);
@@ -473,8 +473,8 @@ router.put('/secure', (req, res, next) => {
 
     });
 });
-router.get('/secure/:senderid&&:friendid', (req, res, next) => {
-    biometricData.find({ senderid: req.params.senderid, friendid: req.params.friendid }, function(err, secure_data) {
+router.get('/secure/:userid', (req, res, next) => {
+    biometricData.find({ userid: req.params.userid }, function(err, secure_data) {
         if (err) {
             res.json('Error finding data!!');
 
@@ -485,10 +485,8 @@ router.get('/secure/:senderid&&:friendid', (req, res, next) => {
 });
 router.post('/secure', (req, res, next) => {
     let newBiometricData = new biometricData({
-        sendername: req.body.sendername,
-        senderid: req.body.senderid,
-        friendid: req.body.friendid,
-        friendname: req.body.friendname,
+        username: req.body.username,
+        userid: req.body.userid,
         toggle: req.body.toggle,
     });
     newBiometricData.save((err, data) => {
